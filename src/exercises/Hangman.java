@@ -67,11 +67,28 @@ public class Hangman extends KeyAdapter {
 		removeBoxes();
 		lives = 9;
 		livesLabel.setText("" + lives);
-		// puzzle = puzzles.pop();
+		// puzzle = "po%poonb";
 		int index = new Random().nextInt(list.size());
 		puzzle = list.get(index);
+
 		System.out.println("puzzle is now " + puzzle);
 		System.out.println(puzzle.length());
+		try {
+			for (int i = 0; i < puzzle.length(); i++) {
+				char ch = puzzle.charAt(i);
+				if (!Character.isDigit(ch) && !Character.isLetter(ch)) {
+					throw new Exception();
+
+				}
+			}
+
+		} catch (Exception e) {
+			System.out.println("The word contain a character that is not a letter. Here is another word for you ");
+			index = new Random().nextInt(list.size());
+			puzzle = list.get(index);
+			System.out.println("puzzle is now " + puzzle);
+		}
+
 		createBoxes();
 
 	}
@@ -114,7 +131,18 @@ public class Hangman extends KeyAdapter {
 		}
 		if (!gotOne)
 			livesLabel.setText("" + --lives);
+		try {
+			String specialChars = "/*!@#$%^&*()\"{}_[]|\\?/<>,.";
+			for (int i = 0; i < specialChars.length(); i++) {
+				if (specialChars.charAt(i) == keyChar) {
+					throw new Exception();
 
+				}
+			}
+
+		} catch (Exception e) {
+			System.out.println("you can not enter a special character");
+		}
 	}
 
 	void createBoxes() {
