@@ -132,7 +132,7 @@ public class Hangman extends KeyAdapter {
 		if (!gotOne)
 			livesLabel.setText("" + --lives);
 		try {
-			String specialChars = "/*!@#$%^&*()\"{}_[]|\\?/<>,.";
+			String specialChars = "/*!@#$%^&*()\"{}_[]|\\?/<>,.-";
 			for (int i = 0; i < specialChars.length(); i++) {
 				if (specialChars.charAt(i) == keyChar) {
 					throw new Exception();
